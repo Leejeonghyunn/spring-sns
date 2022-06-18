@@ -20,8 +20,6 @@ public class PrincipalDetails implements UserDetails {
         this.user = user;
     }
 
-
-
     //권한 : 한개가 아닐 수 있음.(3개 이상의 권한)
     //권한을 가져오는 메서드 (user의 role)
     @Override
@@ -30,9 +28,7 @@ public class PrincipalDetails implements UserDetails {
         //GrantedAuthority 타입으로 받아주기
         Collection<GrantedAuthority> collector = new ArrayList<>();
         //비어있는 권한을 부여해주기
-        collector.add(() ->  {
-            return user.getRole();
-        });
+        collector.add(() -> user.getRole());
 
         return collector;
     }

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
-@RestController //데이터를 응답할것이기 때문에
+@RestController //데이터를 응답할것이기 ㄹ
 public class UserApiController {
 
     private final UserService userService;
@@ -22,7 +22,7 @@ public class UserApiController {
                                @AuthenticationPrincipal PrincipalDetails principalDetails) {
 
         User userEntity = userService.회원수정(id, userUpdateDto.toEntity());
-        principalDetails.setUser(userEntity); //세션정보 변경
+        principalDetails.setUser(userEntity); //세션정보 변경ㄹ
 
         return new CMRespDTO<>(1,"회원수정 완료", userEntity);
     }
