@@ -20,5 +20,4 @@ public class CustomValidationException extends RuntimeException {
         return errorMap;
     }
 
-
 }
