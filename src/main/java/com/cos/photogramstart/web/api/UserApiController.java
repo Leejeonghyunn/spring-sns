@@ -2,8 +2,7 @@ package com.cos.photogramstart.web.api;
 
 import com.cos.photogramstart.config.PrincipalDetails;
 import com.cos.photogramstart.domain.user.User;
-import com.cos.photogramstart.handler.ex.CustomValidationApiException;
-import com.cos.photogramstart.handler.ex.CustomValidationException;
+import com.cos.photogramstart.handler.exception.CustomValidationApiException;
 import com.cos.photogramstart.service.UserService;
 import com.cos.photogramstart.web.dto.CMRespDTO;
 import com.cos.photogramstart.web.user.UserUpdateDto;
@@ -37,9 +36,6 @@ public class UserApiController {
             for (FieldError error : bindingResult.getFieldErrors()) {
 
                 errorMap.put(error.getField(), error.getDefaultMessage()); //20이하여야 합니다
-                System.out.println("===================");
-                System.out.println(error.getDefaultMessage());
-                System.out.println("===================");
             }
             throw new CustomValidationApiException("유효성 검사 실패", errorMap); //예외 발생시킴
         } else {
@@ -48,6 +44,7 @@ public class UserApiController {
             principalDetails.setUser(userEntity); //세션정보 변경
 
             return new CMRespDTO<>(1, "회원수정 완료", userEntity); //응답의 DTO. 1은 성공
+            //응답시에 userEntity의 모든 getter함수가 호출되고 JSON으로 파싱하여 응답한다.
         }
     }
 }

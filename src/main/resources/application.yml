@@ -21,7 +21,7 @@ spring:
   jpa:
     open-in-view: true
     hibernate:
-      ddl-auto: update #create
+      ddl-auto: update #create #none
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     show-sql: true
@@ -37,4 +37,6 @@ spring:
       password: 1234   
 
 file:
-  path: C:/workspace/springbootwork/upload/
+#  path: C:/workspace/springbootwork/upload/
+  path: /Users/jeonghyunlee/Desktop/EaszUp-Springboot-Photogram-Start/upload/
+

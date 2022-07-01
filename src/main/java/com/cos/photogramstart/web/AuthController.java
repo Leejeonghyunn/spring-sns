@@ -1,10 +1,11 @@
 package com.cos.photogramstart.web;
 
 import com.cos.photogramstart.domain.user.User;
-import com.cos.photogramstart.handler.ex.CustomValidationException;
+import com.cos.photogramstart.handler.exception.CustomValidationException;
 import com.cos.photogramstart.service.AuthService;
 import com.cos.photogramstart.web.dto.SignupReqDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,7 @@ import java.util.Map;
 
 @RequiredArgsConstructor //final이 있는 코드에 대한 '생성자'를 만들어준다 - DI할때 사용
 @Controller // 1. IOC에 등록이 되었다. 2. 파일을 return 하는 컨트롤러가 되었다
+
 public class AuthController {
     private static final Logger log = LoggerFactory.getLogger(AuthController.class);
 
