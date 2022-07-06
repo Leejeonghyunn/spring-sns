@@ -3,19 +3,25 @@ package com.cos.photogramstart.web.api;
 import com.cos.photogramstart.config.PrincipalDetails;
 import com.cos.photogramstart.domain.user.User;
 import com.cos.photogramstart.handler.exception.CustomValidationApiException;
+import com.cos.photogramstart.service.SubscribeService;
 import com.cos.photogramstart.service.UserService;
 import com.cos.photogramstart.web.dto.CMRespDTO;
+import com.cos.photogramstart.web.dto.subscribe.SubscribeDto;
 import com.cos.photogramstart.web.user.UserUpdateDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RequiredArgsConstructor
@@ -23,12 +29,25 @@ import java.util.Map;
 public class UserApiController {
 
     private final UserService userService; //DI 주입
+    private final SubscribeService subscribeService;
+
+    @GetMapping("/api/user/{pageUserId}/subscribe")
+    public ResponseEntity<?> subscribeList(@PathVariable int pageUserId,
+                                           @AuthenticationPrincipal PrincipalDetails principalDetails) {
+
+        List<SubscribeDto> subscribeDto = subscribeService.구독리스트(principalDetails.getUser().getId(), pageUserId);
+
+        return new ResponseEntity<>(new CMRespDTO<>(1, "구독자 정보 리스트 가져오기 성공", subscribeDto), HttpStatus.OK);
+
+    }
+
 
     @PutMapping("/api/user/{id}")
     public CMRespDTO<?> update(@PathVariable int id,
                                @Valid UserUpdateDto userUpdateDto,
                                BindingResult bindingResult,     //꼭 Vaild가 적혀있는 다음 파라미터에 적어야함 !!!!
                                @AuthenticationPrincipal PrincipalDetails principalDetails) { //세션정보 변경
+
 
         if (bindingResult.hasErrors()) {     //오류가 발생하면 getFieldErrors() 컬렉션에 모아준다
             Map<String, String> errorMap = new HashMap<>();

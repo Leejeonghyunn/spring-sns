@@ -25,6 +25,7 @@
 
 		<!--유저정보 및 사진등록 구독하기-->
 		<div class="profile-right">
+			Here~
 			<div class="name-group">
 				<h2>${dto.user.name}</h2>
 
@@ -41,6 +42,7 @@
 								<button class="cta" onclick="toggleSubscribe(${dto.user.id},this)">구독하기</button>
 							</c:otherwise>
 						</c:choose>
+
 					</c:otherwise>
 				</c:choose>
 
@@ -52,15 +54,17 @@
 
 			<div class="subscribe">
 				<ul>
-					<li><a href=""> 게시물<span>${dto.images.size()}</span>
+
+					<li><a href=""> 게시물<span>${dto.user.images.size()}</span>
+<%--					<li><a href=""> 게시물<span>${dto.images.size()}</span>--%>
 					</a></li>
-					<li><a href="javascript:subscribeInfoModalOpen();"> 구독정보<span>${dto.subscribeCount}</span>
+					<li><a href="javascript:subscribeInfoModalOpen(${dto.user.id});"> 구독정보<span>${dto.subscribeCount}</span>
 					</a></li>
 				</ul>
 			</div>
 			<div class="state">
-				<h4>${user.bio}</h4>
-				<h4>${user.website}</h4>
+				<h4>${dto.user.bio}</h4>
+				<h4>${dto.user.website}</h4>
 			</div>
 		</div>
 		<!--유저정보 및 사진등록 구독하기-->

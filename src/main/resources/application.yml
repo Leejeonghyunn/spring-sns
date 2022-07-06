@@ -24,6 +24,7 @@ spring:
       ddl-auto: update #create #none
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      format-sql: ture
     show-sql: true
       
   servlet:

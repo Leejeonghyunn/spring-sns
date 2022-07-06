@@ -23,7 +23,7 @@ function toggleSubscribe(toUserId, obj) {
             $(obj).text("구독하기");
 			$(obj).toggleClass("blue");
 		}).fail(error=> {
-			console.log("구독취소 실패", error)
+			console.log("구독취소 실패", error);
 		});
 
 	} else {
@@ -37,7 +37,7 @@ function toggleSubscribe(toUserId, obj) {
 			$(obj).text("구독취소");
 			$(obj).toggleClass("blue");
 		}).fail(error=> {
-			console.log("구독 실패", error)
+			console.log("구독 실패", error);
 		});
 	}
 }

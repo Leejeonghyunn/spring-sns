@@ -13,7 +13,7 @@ public interface SubscribeRepository extends JpaRepository<Subscribe, Integer> {
 
     //구독취소하기 네이티브 쿼리
     @Modifying
-    @Query(value = "DELETE FORM subscribe WHERE fromUserId = :fromUserId AND toUserId=:toUserId",nativeQuery = true)
+    @Query(value = "DELETE FROM subscribe WHERE fromUserId = :fromUserId AND toUserId=:toUserId",nativeQuery = true)
     void mUnSubscribe(int fromUserId, int toUserId);
 
     //구독상태 확인 네이티브 쿼리
